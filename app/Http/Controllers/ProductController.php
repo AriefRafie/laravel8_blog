@@ -46,6 +46,7 @@ class ProductController extends Controller
 
         $input = $request->all();
 
+        //potion image
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
