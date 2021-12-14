@@ -17,5 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 use App\Http\Controllers\ProductController;
-  
+ 
+//product 
 Route::resource('products', ProductController::class);
+
+//calender
+use App\Http\Controllers\FullCalenderController;
+Route::get('fullcalender', [FullCalenderController::class, 'index']);
+Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
