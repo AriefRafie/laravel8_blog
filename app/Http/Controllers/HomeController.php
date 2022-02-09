@@ -1,41 +1,39 @@
 <?php
-  
+   
 namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
-use App\Models\User;
-  
+   
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function create()
+    public function __construct()
     {
-        return view('createUser');
+        $this->middleware('auth');
     }
-    
+  
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function store(Request $request)
+    public function index()
     {
-        $validatedData = $request->validate([
-                'name' => 'required',
-                'password' => 'required|min:5',
-                'email' => 'required|email|unique:users'
-            ], [
-                'name.required' => 'Name is required',
-                'password.required' => 'Password is required'
-            ]);
-  
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        $user = User::create($validatedData);
-      
-        return back()->with('success', 'User created successfully.');
+        return view('home');
     }
+  
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function adminHome()
+    {
+        return view('adminHome');
+    }
+    
 }

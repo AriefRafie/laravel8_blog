@@ -25,11 +25,7 @@ Route::resource('products', ProductController::class);
 use App\Http\Controllers\FullCalenderController;
 Route::get('fullcalender', [FullCalenderController::class, 'index']);
 Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
- 
-//form validation
-use App\Http\Controllers\HomeController; 
-Route::get('user/create', [ HomeController::class, 'create' ]);
-Route::post('user/create', [ HomeController::class, 'store' ]);
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use App\Http\Controllers\HomeController;
+Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
